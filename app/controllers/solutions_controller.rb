@@ -67,6 +67,7 @@ class SolutionsController < ApplicationController
       @g_fat = result.fetch("fat")
       @kcal = result.fetch("total_calories")
       @notes = result.fetch("notes")
+  
     end
 
     render({ :template => "solution_templates/results" })

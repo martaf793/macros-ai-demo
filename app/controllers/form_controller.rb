@@ -4,7 +4,7 @@ class FormController < ApplicationController
     render({ :template => "form_templates/form_trial" })
   end
   def proc_inputs
-    @the_image=params.fetch("image_param", "not there")
+    @the_image=params.fetch("image_param", nil)
     # @the_image=params.fetch["image_param"] #esto te devuelve nil
     @description=params.fetch("description_param")
 
@@ -54,6 +54,7 @@ class FormController < ApplicationController
       @g_carbs=@structured_output.fetch("carbohydrates")
       @g_fat=@structured_output.fetch("fat")
       @kcal=@structured_output.fetch("total_calories")
+      @notes=@structured_output.fetch("notes")
 
       c.assistant!
     render({ :template => "form_templates/p_results" })
