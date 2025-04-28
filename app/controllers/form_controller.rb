@@ -14,11 +14,44 @@ class FormController < ApplicationController
       
       c.user(@description)
       c.schema='{
-      "name"=" nutrition_facts"
-      }'
+      "name": "nutrition_info",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "carbohydrates": {
+            "type": "number",
+            "description": "Amount of carbohydrates in grams."
+          },
+          "protein": {
+            "type": "number",
+            "description": "Amount of protein in grams."
+          },
+          "fat": {
+            "type": "number",
+            "description": "Amount of fat in grams."
+          },
+          "total_calories": {
+            "type": "number",
+            "description": "Total calories in kcal."
+          },
+          "notes": {
+            "type": "string",
+            "description": "A breakdown of how you arrived at the values, and additional notes."
+          }
+        },
+        "required": [
+          "carbohydrates",
+          "protein",
+          "fat",
+          "total_calories",
+          "notes"
+        ],
+        "additionalProperties": false
+      },
+      "strict": true
+    }'
       @structured_output=c.assistant!
       c.assistant!
     render({ :template => "form_templates/p_results" })
-
   end
 end
