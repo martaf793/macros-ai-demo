@@ -11,7 +11,7 @@ class FormController < ApplicationController
     c=OpenAI::Chat.new 
       c.system("your are an expert nutritionist. The user will give you an image and/or description of a meal")
       @description
-      
+      c.user("here is an image", image:@the_image)
       c.user(@description)
       c.schema='{
       "name": "nutrition_info",
@@ -51,6 +51,10 @@ class FormController < ApplicationController
       "strict": true
     }'
       @structured_output=c.assistant!
+      @g_carbs=@structured_output.fetch("carbohydrates")
+      @g_fat=@structured_output.fetch("fat")
+      @kcal=@structured_output.fetch("total_calories")
+
       c.assistant!
     render({ :template => "form_templates/p_results" })
   end
