@@ -1,5 +1,9 @@
 <h1>hello</h1>
 Image:<%=@the_image%>
 Descriptio:<%=@description%>
-<%=c=OpenAi::Chat.new%>
+<%= c=OpenAI::Chat.new %>
 <%=c.system("your are a nutritionist")%>
+<%=c.user("how many calories")%>
+<%= c.assistant!%>
+<%= c.schema='{
+}'%>
