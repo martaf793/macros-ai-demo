@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   
   post("/solutions/process_form", { :controller => "solutions", :action => "process_inputs" })
   
+  get("/blank_form", {:controller=> "form", :action => "blank_form"})
 end
